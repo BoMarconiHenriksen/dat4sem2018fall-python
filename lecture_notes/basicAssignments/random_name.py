@@ -1,5 +1,9 @@
 # Lav et random navn ud fra listerne og første bogstav skal være stort
 
+""" Dokumentation 
+
+"""
+
 import random
 
 nouns = ['people', 'history', 'way', 'art', 'world', 'information', 'map',
