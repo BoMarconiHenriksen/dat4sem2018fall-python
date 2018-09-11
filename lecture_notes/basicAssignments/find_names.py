@@ -1,6 +1,3 @@
-import sherlock_holmes import characters
-import the_sign_of_the_four import all_text
-
 all_text = """Sherlock Holmes took his bottle from the corner of the mantel-piece and
 his hypodermic syringe from its neat morocco case. With his long,
 white, nervous fingers he adjusted the delicate needle, and rolled back
@@ -4532,10 +4529,68 @@ for el in characters:
     if el.split()[-1] in all_text:
         print(el)
 
-last_names = set([el.split()[-1] for el in characters])
 
-appearance = []
-for word in all_text.split():
-    if word on last_names:
-        appearance.append(word)
-        print(appearance)
+def no_appearence():
+    all_characters = characters  # + all_characters
+    last_names = set([el.split()[-1] for el in characters])
+
+    # appearance = []
+    # appearance = {name: 0 for name in last_names}
+    appearance = {}
+    # Ovenstående i stedet for nedenstående
+    # for name in last_names:
+    #    appearance[name] = 0
+
+    for word in all_text.split():
+        if word in last_names:
+            # appearance.append(word)
+            # eksister den ikke sætter jeg værdien 0
+            appearance.setdefault(word, 0)
+            appearance[word] += 1
+            return appearance
+    #        print(appearance.count('Holmes'))
+
+
+def print_pretty_string(appearance):
+    for name, freq in appearance.items():
+        if freq > 1:
+            print(f'Many {name}')
+        else:
+            print('fOne {name}')
+
+def say(msg, to): # default to='Helge'
+    print(f'{msg} {to}')
+
+#Gøre noget mange gange
+for el in range(10):
+    print(el)
+
+
+for el in range(0, 10):
+    print(el)
+
+#Fra 100 til 20 og hvert 3. element
+for el in range(100, 20, -3):
+    print(el)
+
+def find_potential_names(all_text):
+    titles = ['Mr.', 'Mrs.', 'Ms.', 'Dr.']
+    no_appearence = {}
+    words = all_text.split()
+    for idx, word in enumerate(words): #enumerate = for hvert element får du index.
+        if word.istitle():
+            if word[idx -1] in titles
+            no_appearence.setdefault(word, 0)
+            no_appearence[word] += 1
+    return no_appearence
+
+if __name__ == '__main__':  # Køre ikke koden fra anden fil ved import
+    freq = no_appearence()
+    print_pretty_string(freq)
+    say(msg='Hello', to='World')
+
+
+
+
+# import sherlock_holmes import characters, minor_characters
+# import the_sign_of_the_four import all_text
