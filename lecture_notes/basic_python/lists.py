@@ -82,6 +82,3 @@ print(fst_sentence) # ['Call', 'me', 'Ishmael']
 unordered_numbers = [50, 1, -20, 34 , 2, -400]
 sorted_numbers = sorted(unordered_numbers)
 print(sorted_numbers) # [-400, -20, 1, 2, 34, 50]
-
-# Sequences
-# 
