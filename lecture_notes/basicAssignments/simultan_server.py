@@ -3,7 +3,6 @@ import requests
 import os
 from datetime import datetime
 
-
 my_app = flask.Flask(__name__)
 user_file = './logs/clients.txt'
 before = None
@@ -31,9 +30,6 @@ def write_page_to_file():
 
 
 def write_user_to_log(ip):
-    # http://docs.python-requests.org/en/latest/api/?highlight=elapsed#requests.Response.elapsed
-    #request_time = requests.get(ip).elapsed._to_microseconds()
-
     create_directory("logs")
 
     if (os.path.isfile(user_file)):
@@ -43,7 +39,6 @@ def write_user_to_log(ip):
 
     with open(user_file, attr, encoding='utf-8') as file:
         file.write(f'{ip}')
-        #file.write(f' - request served in {request_time} miliseconds\n')
 
 
 @my_app.before_request
@@ -54,19 +49,23 @@ def start_timer():
 
 @my_app.route('/')
 def render_page():
-    write_user_to_log(flask.request.remote_addr)
+    # write_user_to_log(flask.request.remote_addr)
     return flask.render_template('hackernews.html')
 
 
-# Skal laves med callback https://stackoverflow.com/questions/11939858/flask-nonetype-object-is-not-callable
 @my_app.after_request
 def per_request_timer(response):
     global before
     after = datetime.now()
-
     serve_time = after - before
+
+    timestamp = str(after)
+
     with open(user_file, 'a', encoding='utf-8') as file:
-        file.write(f' - request served in {serve_time} miliseconds\n')
+        file.write(
+            f' {timestamp} {flask.request.remote_addr} - request served in {serve_time} miliseconds\n')
+
+    return response
 
 
 if __name__ == '__main__':
