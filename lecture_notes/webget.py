@@ -26,7 +26,9 @@ def download(url, to=None):
 
     if not os.path.isfile(localfile):
         opener = req.build_opener()
-        opener.addheaders = [('User-agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0')]
+        # Den anden side tror det er en browser.
+        opener.addheaders = [
+            ('User-agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0')]
         req.install_opener(opener)
         req.urlretrieve(url, localfile)
 
