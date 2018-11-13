@@ -6,6 +6,12 @@ from selenium.webdriver.common.keys import Keys
 
 def get_info(name):
     base_url = 'http://www.krak.dk'
+<<<<<<< HEAD
+=======
+    # to make that work on OS X I had to: brew install geckodriver
+    # to make that work on Windows: see http://kennethhutw.blogspot.com/2017/03/how-to-install-geckodriver-on-windows.html
+    # to make that work on Linux: I would guess there is a package with it...
+>>>>>>> upstream/master
     browser = webdriver.Firefox()
     browser.get(base_url)
     browser.implicitly_wait(3)
